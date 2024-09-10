@@ -32,17 +32,35 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Button(option: 'Decimal in Binar'),
-                Button(option: 'Decimal in Hexa'),
-                Button(option: 'Hexa in Binar'),
+                Button(
+                  option: 'Decimal in Binar',
+                  heroTag: 'DiB',
+                ),
+                Button(
+                  option: 'Decimal in Hexa',
+                  heroTag: 'DiH',
+                ),
+                Button(
+                  option: 'Hexa in Binar',
+                  heroTag: 'HiB',
+                ),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Button(option: 'Binar in Decimal'),
-                Button(option: 'Hexa in Decimal'),
-                Button(option: 'Binar in Hexa'),
+                Button(
+                  option: 'Binar in Decimal',
+                  heroTag: 'BiD',
+                ),
+                Button(
+                  option: 'Hexa in Decimal',
+                  heroTag: 'HiD',
+                ),
+                Button(
+                  option: 'Binar in Hexa',
+                  heroTag: 'BiH',
+                ),
               ],
             )
           ],
@@ -54,8 +72,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
 class Button extends StatelessWidget {
   final String option;
+  final String heroTag;
   const Button({
     required this.option,
+    required this.heroTag,
     super.key,
   });
 
@@ -66,32 +86,35 @@ class Button extends StatelessWidget {
 
     return Padding(
         padding: const EdgeInsets.all(8.0),
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => Calculator(
-                        option: option,
-                      )),
-            );
-          },
-          style: ButtonStyle(
-            backgroundColor: WidgetStateProperty.all<Color?>(color),
-            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18.0),
+        child: SizedBox(
+          width: monitorWidth >= 1248 ? 300.0 : 200,
+          height: monitorWidth >= 1248 ? 200 : 150,
+          child: FloatingActionButton(
+            onPressed: () {
+              Future.delayed(const Duration(milliseconds: 100), () {
+                if (context.mounted) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Calculator(
+                              option: option,
+                            )),
+                  );
+                }
+              });
+            },
+            splashColor: Colors.orange[900],
+            heroTag: heroTag,
+            backgroundColor: color,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18.0),
+            ),
+            child: Text(
+              option,
+              style: const TextStyle(
+                fontSize: 32,
+                color: Colors.white70,
               ),
-            ),
-            fixedSize: WidgetStateProperty.all<Size>(
-              Size(monitorWidth >= 1248 ? 300.0 : 200, monitorWidth >= 1248 ? 200 : 150),
-            ),
-          ),
-          child: Text(
-            option,
-            style: const TextStyle(
-              fontSize: 32,
-              color: Colors.white70,
             ),
           ),
         ));
