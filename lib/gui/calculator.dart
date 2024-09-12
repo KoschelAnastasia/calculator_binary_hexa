@@ -26,6 +26,7 @@ class _CalculatorState extends State<Calculator> {
     return Scaffold(
       backgroundColor: Colors.lightGreen[50],
       appBar: AppBar(
+        // Set the title based on the selected option
         title: Text(
           widget.option == "Binar in Decimal"
               ? 'Binar in Decimal'
@@ -65,6 +66,7 @@ class _CalculatorState extends State<Calculator> {
                       return oldValue;
                     }),
                   ],
+                  // Set the max length of Number based on the selected option
                   maxLength: widget.option == 'Decimal in Binar' || widget.option == 'Decimal in Hexa'
                       ? 18
                       : widget.option == 'Hexa in Decimal'
@@ -88,6 +90,7 @@ class _CalculatorState extends State<Calculator> {
                         width: 2,
                       ),
                     ),
+                    // Set the label based on the selected option
                     labelText: widget.option == 'Decimal in Binar'
                         ? 'Bitte geben Sie ihre Dezimalzahl ein'
                         : widget.option == 'Binar in Decimal'
@@ -186,6 +189,7 @@ class _CalculatorState extends State<Calculator> {
                           width: 2,
                         ),
                       ),
+                      // Set the label based on the selected option
                       labelText: widget.option == 'Binar in Decimal' || widget.option == 'Hexa in Decimal'
                           ? 'Dezimalzahl'
                           : widget.option == 'Decimal in Hexa' || widget.option == 'Binar in Hexa'
@@ -221,6 +225,7 @@ class _CalculatorState extends State<Calculator> {
     }
   }
 
+// Method to switch the operation in the calculator
   void _onSwitch() {
     inputController.clear();
     result = '';

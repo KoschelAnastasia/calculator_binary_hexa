@@ -9,7 +9,7 @@ class ButtonPropertiesLine extends StatelessWidget {
     required this.buttonsPropertiesList,
     super.key,
   });
-
+//Named Constructors that creates a line of FabButtons based on the properties of the buttons
   ButtonPropertiesLine.firstLine()
       : buttonsPropertiesList = [
           BottonProperties(
